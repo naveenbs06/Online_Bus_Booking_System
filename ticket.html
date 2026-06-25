@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Bus Ticket</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+
+body{
+font-family:Arial;
+background:linear-gradient(to right,#a1c4fd,#c2e9fb);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.ticket{
+background:white;
+padding:30px;
+border-radius:10px;
+width:350px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+h2{text-align:center}
+
+table{
+width:100%;
+margin-top:10px;
+border-collapse:collapse;
+}
+
+th{
+background:#4b6cb7;
+color:white;
+padding:8px;
+}
+
+td{
+padding:8px;
+text-align:center;
+border-bottom:1px solid #ccc;
+}
+
+button{
+width:100%;
+margin-top:10px;
+padding:12px;
+background:#ff6b6b;
+border:none;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+#qrcode{
+margin-top:15px;
+display:flex;
+justify-content:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="ticket" id="ticket">
+
+<h2>🚌 VRL Travels</h2>
+
+<p><b>Booking ID:</b> <span id="booking"></span></p>
+
+<p><b>Journey:</b> <span id="route"></span></p>
+
+<p><b>Date:</b> <span id="date"></span></p>
+
+
+<h3>Passenger Details</h3>
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Seats</th>
+<th>Boarding</th>
+</tr>
+
+<tr>
+<td id="name"></td>
+<td id="seats"></td>
+<td id="boarding"></td>
+</tr>
+
+</table>
+
+
+<p><b>Total Price:</b> ₹ <span id="price"></span></p>
+
+<div id="qrcode"></div>
+
+<button onclick="downloadPDF()">Download PDF Ticket</button>
+
+<button onclick="nextBooking()">Next Booking</button>
+
+</div>
+
+<script>
+
+/* GET DATA */
+
+let from = localStorage.getItem("from") || "Bengaluru"
+let to = localStorage.getItem("to") || "Ballary"
+let date = localStorage.getItem("date") || "2026-03-09"
+
+let name = localStorage.getItem("passengerName") || "Yogaraj"
+
+let seats = localStorage.getItem("selectedSeats") || "1"
+
+let boarding = localStorage.getItem("boarding") || "Majestic Bus Stand"
+
+let price = localStorage.getItem("totalAmount") || "800"
+
+
+/* DISPLAY DATA */
+
+let booking="BK"+Math.floor(Math.random()*10000)
+
+document.getElementById("booking").innerText=booking
+document.getElementById("route").innerText=from+" → "+to
+document.getElementById("date").innerText=date
+document.getElementById("name").innerText=name
+document.getElementById("seats").innerText=seats
+document.getElementById("boarding").innerText=boarding
+document.getElementById("price").innerText=price
+
+
+/* QR CODE */
+
+let qrText=
+"Booking:"+booking+"\n"+
+"Passenger:"+name+"\n"+
+"Route:"+from+"-"+to+"\n"+
+"Seats:"+seats+"\n"+
+"Boarding:"+boarding+"\n"+
+"Price:"+price
+
+new QRCode(document.getElementById("qrcode"),{
+
+text:qrText,
+width:120,
+height:120
+
+})
+
+
+/* DOWNLOAD PDF */
+
+function downloadPDF(){
+
+html2canvas(document.getElementById("ticket")).then(canvas=>{
+
+const img = canvas.toDataURL("image/png")
+
+const { jsPDF } = window.jspdf
+
+let pdf=new jsPDF()
+
+pdf.addImage(img,"PNG",10,10,180,0)
+
+pdf.save("BusTicket.pdf")
+
+})
+
+}
+
+
+/* NEXT BOOKING */
+
+function nextBooking(){
+
+window.location="index.html"
+
+}
+
+</script>
+
+</body>
+
+</html>

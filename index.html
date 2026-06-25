@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Bus Booking</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#f5f6fa;
+scroll-behavior:smooth;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:#c76b2f;
+color:white;
+}
+
+.navbar a{
+color:white;
+text-decoration:none;
+margin:0 10px;
+font-weight:bold;
+}
+
+/* HERO */
+
+.hero{
+height:350px;
+display:flex;
+justify-content:center;
+align-items:center;
+background-size:cover;
+background-position:center;
+animation:slide 15s infinite;
+}
+
+/* SLIDESHOW */
+
+@keyframes slide{
+
+0%{
+background-image:url("https://images.unsplash.com/photo-1544620347-c4fd4a3d5957");
+}
+
+33%{
+background-image:url("https://images.unsplash.com/photo-1509749837427-ac94a2553d0e");
+}
+
+66%{
+background-image:url("https://images.unsplash.com/photo-1494515843206-f3117d3f51b7");
+}
+
+100%{
+background-image:url("https://images.unsplash.com/photo-1544620347-c4fd4a3d5957");
+}
+
+}
+
+/* SEARCH BOX */
+
+.search-box{
+background:white;
+padding:30px;
+border-radius:10px;
+width:450px;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+.search-row{
+display:flex;
+justify-content:center;
+align-items:center;
+margin-bottom:10px;
+}
+
+.search-box input{
+padding:10px;
+margin:5px;
+width:160px;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+.swap-btn{
+background:#ff6b6b;
+color:white;
+border:none;
+padding:10px;
+margin:5px;
+border-radius:50%;
+cursor:pointer;
+font-size:16px;
+}
+
+.search-btn{
+background:#ff6b6b;
+border:none;
+padding:10px 20px;
+color:white;
+border-radius:5px;
+cursor:pointer;
+margin-top:10px;
+}
+
+/* SECTION */
+
+.section{
+padding:60px;
+text-align:center;
+}
+
+/* ROUTES */
+
+.routes{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-top:20px;
+flex-wrap:wrap;
+}
+
+.route{
+background:#ffe9d6;
+padding:10px 20px;
+border-radius:20px;
+}
+
+/* DASHBOARD */
+
+.stats{
+display:flex;
+justify-content:center;
+gap:40px;
+margin-top:30px;
+}
+
+.stat{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* CONTACT */
+
+.contact-box{
+max-width:400px;
+margin:auto;
+}
+
+.contact-box input,
+.contact-box textarea{
+width:100%;
+padding:10px;
+margin:10px 0;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+.contact-box button{
+background:#ff6b6b;
+border:none;
+padding:10px 20px;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<h2>🚌 Bus Booking</h2>
+
+<div>
+
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#dashboard">Dashboard</a>
+<a href="#contact">Contact</a>
+<a href="#">Login</a>
+<a href="#">Register</a>
+
+</div>
+
+</div>
+
+
+<!-- HOME -->
+
+<section id="home" class="hero">
+
+<div class="search-box">
+
+<h2>Search Bus</h2>
+
+<div class="search-row">
+
+<input type="text" id="from" placeholder="From City">
+
+<button onclick="swapCities()" class="swap-btn">⇄</button>
+
+<input type="text" id="to" placeholder="To City">
+
+</div>
+
+<input type="date" id="date">
+
+<br>
+
+<button class="search-btn" onclick="searchBus()">
+Search Bus
+</button>
+
+</div>
+
+</section>
+
+
+<!-- POPULAR ROUTES -->
+
+<section class="section">
+
+<h2>⭐ Popular Routes</h2>
+
+<div class="routes">
+
+<div class="route">Bangalore → Hyderabad</div>
+<div class="route">Chennai → Bangalore</div>
+<div class="route">Mumbai → Pune</div>
+<div class="route">Delhi → Jaipur</div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about" class="section">
+
+<h2>About Bus Booking</h2>
+
+<p>
+
+Our Bus Booking System allows passengers to search buses,
+select seats, and book tickets online easily.
+
+We provide comfortable travel options across multiple cities
+with secure booking and instant ticket confirmation.
+
+</p>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="section">
+
+<h2>Dashboard</h2>
+
+<div class="stats">
+
+<div class="stat">
+<h3>120+</h3>
+<p>Buses Available</p>
+</div>
+
+<div class="stat">
+<h3>50+</h3>
+<p>Routes</p>
+</div>
+
+<div class="stat">
+<h3>10K+</h3>
+<p>Happy Customers</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact" class="section">
+
+<h2>Contact Us</h2>
+
+<div class="contact-box">
+
+<input type="text" id="name" placeholder="Your Name">
+<input type="email" id="email" placeholder="Your Email">
+<textarea id="msg" placeholder="Message"></textarea>
+
+<button onclick="sendMessage()">Send Message</button>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* SWAP CITIES */
+
+function swapCities(){
+
+let from = document.getElementById("from")
+let to = document.getElementById("to")
+
+let temp = from.value
+from.value = to.value
+to.value = temp
+
+}
+
+
+/* SEARCH BUS */
+
+function searchBus(){
+
+let from=document.getElementById("from").value
+let to=document.getElementById("to").value
+let date=document.getElementById("date").value
+
+if(from=="" || to=="" || date==""){
+
+alert("Enter all fields")
+return
+
+}
+
+localStorage.setItem("from",from)
+localStorage.setItem("to",to)
+localStorage.setItem("date",date)
+
+window.location="buses.html"
+
+}
+
+
+/* CONTACT MESSAGE */
+
+function sendMessage(){
+
+let name=document.getElementById("name").value
+let email=document.getElementById("email").value
+let msg=document.getElementById("msg").value
+
+if(name=="" || email=="" || msg==""){
+
+alert("Please fill all fields")
+return
+
+}
+
+alert("Message Sent Successfully ✅")
+
+}
+
+</script>
+
+</body>
+</html>

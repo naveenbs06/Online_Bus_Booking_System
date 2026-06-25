@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Passenger Details</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#74ebd5,#9face6);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+/* CARD */
+
+.container{
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 0 20px rgba(0,0,0,0.2);
+width:400px;
+text-align:center;
+}
+
+h2{
+margin-bottom:25px;
+}
+
+/* INPUT */
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:6px;
+border:1px solid #ccc;
+font-size:14px;
+}
+
+/* BUTTON */
+
+button{
+width:100%;
+padding:12px;
+margin-top:15px;
+background:#ff4d4d;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#e63e3e;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+<h2>Passenger Details</h2>
+
+<input type="text" id="name" placeholder="Passenger Name">
+
+<input type="number" id="age" placeholder="Age">
+
+<input type="text" id="phone" placeholder="Phone Number">
+
+<input type="email" id="email" placeholder="Email Address">
+
+<button onclick="nextPage()">
+
+Continue
+
+</button>
+
+</div>
+
+
+<script>
+
+function nextPage(){
+
+let name=document.getElementById("name").value
+let age=document.getElementById("age").value
+let phone=document.getElementById("phone").value
+let email=document.getElementById("email").value
+
+if(name=="" || age=="" || phone=="" || email==""){
+
+alert("Please fill all fields")
+return
+
+}
+
+localStorage.setItem("name",name)
+localStorage.setItem("age",age)
+localStorage.setItem("phone",phone)
+localStorage.setItem("email",email)
+
+window.location="boarding.html"
+
+}
+
+</script>
+
+
+</body>
+</html>

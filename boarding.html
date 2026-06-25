@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Select Boarding Point</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:linear-gradient(to right,#a1c4fd,#c2e9fb);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.box{
+background:white;
+padding:30px;
+border-radius:10px;
+width:350px;
+text-align:center;
+}
+
+select{
+width:100%;
+padding:10px;
+margin-top:15px;
+border-radius:5px;
+}
+
+button{
+margin-top:20px;
+width:100%;
+padding:12px;
+background:#ff6b6b;
+border:none;
+color:white;
+font-size:16px;
+border-radius:6px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Select Boarding Point</h2>
+
+<select id="boarding"></select>
+
+<button onclick="confirmBooking()">Confirm Booking</button>
+
+</div>
+
+
+<script>
+
+/* GET DESTINATION CITY FROM SEARCH PAGE */
+
+let toCity = localStorage.getItem("to") || "City"
+
+
+/* CREATE BOARDING POINTS AUTOMATICALLY */
+
+let boardingPoints = [
+
+toCity + " Bus Stand",
+toCity + " Railway Station",
+toCity + " City Center",
+toCity + " Highway Stop",
+toCity + " Main Market"
+
+]
+
+
+/* DISPLAY BOARDING OPTIONS */
+
+let select = document.getElementById("boarding")
+
+boardingPoints.forEach(point => {
+
+let option = document.createElement("option")
+
+option.value = point
+option.text = point
+
+select.appendChild(option)
+
+})
+
+
+/* SAVE BOARDING POINT */
+
+function confirmBooking(){
+
+let boarding = document.getElementById("boarding").value
+
+localStorage.setItem("boarding",boarding)
+
+window.location = "ticket.html"
+
+}
+
+</script>
+
+</body>
+
+</html>
